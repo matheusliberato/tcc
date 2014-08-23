@@ -1,4 +1,20 @@
-\documentclass[12pt, a4paper]{ifspcjo}
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	%openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	twoside,			% para impressão em verso e anverso. Oposto a oneside
+	a4paper,			% tamanho do papel.
+	% -- opções da classe abntex2 --
+	chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	% section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	%french,				% idioma adicional para hifenização
+	%spanish,			% idioma adicional para hifenização
+	brazil				% o último idioma é o principal do documento
+	]{tcc}
 
 \usepackage[T1]{fontenc}
 % \usepackage{libertine}
@@ -64,15 +80,70 @@
 
 \begin{document}
 
-	\imprimircapa
+\pretextual
 
-	\imprimirfolhaderosto
+% -- Insere a capa
+\imprimircapa
 
-	\folhadeaprovacaoteste
+% -- Insere a folha de rosto
+\imprimirfolhaderosto
 
-	\tableofcontents
+% -- Insere a folha de aprovacao
+\folhadeaprovacaoteste
 
-	\chapter{Introdução}
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+\textual
+
+\chapter[Introdução]{Introdução}
+
+Nos últimos anos, a criptografia tornou-se essencial à segurança de dados eletrônicos, em função do aumento na quantidade de informações enviadas e recebidas no formato digital causado pela popularização dos meios de comunicação digitais \cite{deshpande2009fpga, almeidaconstruccao}.
+
+Atualmente várias operações são feitas através da Internet, desde a transmissão de mensagens e compras em comércio eletrônico, até transações financeiras por instituições bancárias \cite{grandesDesafios2013}. Com a utilização da internet como meio de comunicação, surge a necessidade de proteger os dados transmitidos contra o acesso indevido.
+
+Para oferecer confiabilidade nos serviços prestados através da Internet, são usadas técnicas de criptografia. Segundo \citeonline{stallings}, a criptografia é o processo de converter uma informação legível em uma informação codificada com base em cálculos matemáticos.
+
+Com a evolução tecnológica, são produzidos computadores com hardware mais potentes, tornando os métodos de criptografia tradicionais obsoletos. Neste cenário, novas técnicas de criptografia são desenvolvidas a fim de tornar mais segura a transmissão de informações por meios digitais \cite{modeloAESsimplificado}. 
+
+Tais técnicas podem ser implementadas tanto em software como em hardware \cite{almeidaconstruccao}. A implementação por software é caracterizada por usar linguagens de programação como C, C++ e Linguagem de Montagem (Assembly), e por ser executada em microprocessadores de propósito geral. Já a implementação por hardware é caracterizada por usar linguagens de descrição de hardware, como VHDL e Verilog HDL, e é projetada para executar sobre um hardware dedicado, como FPGA (Field-Programmable Gates Array) e  ASIC (Application Specific Integrated Circuits) \cite{gaj2009fpga}.
+
+ASIC são circuitos integrados projetados para uma aplicação específica, e possuem um custo elevado com relação a FPGA. Já FPGA são dispositivos semicondutores programáveis baseados em uma matriz CLB (Configurable Logic Blocks) \footnote{Uma matriz CLB (Bloco Lógicos Configuráveis) é composta por circuitos lógicos interligados como multiplexadores e flip-flop.}.
+As FPGAs são programadas conforme a necessidade de cada aplicação. A cada reconfiguração, são feitas novas ligações lógicas, o que torna a FPGA um dispositivo flexível, podendo ser aplicado em várias situações \cite{xilinxfpga}.
+
+A principal vantagem da FPGA em relação ao ASIC é a capacidade de reconfiguração dos circuitos, o que permite diversas implementações sobre o mesmo hardware, mudando apenas as ligações dos circuitos lógicos. Isto torna esta arquitetura ideal para prototipação e validação de sistemas, além de possuir baixo custo, se comparado ao valor unitário de um ASIC \cite{gaj2009fpga}.
+
+Pesquisas em áreas como medicina e biologia possuem em comum a necessidade de processar enormes quantidades de dados. Nesses casos, são usados hardwares dedicados, como FPGA e ASIC, como alternativa ao processamento em hardware de propósito geral \cite{MolecularBiology}, \cite{BiologicalSequenceAligment}. Algoritmos de criptografia são caracterizados por efetuar operações matemáticas complexas, o que consome grande quantidade de recursos computacionais \cite{deshpande2009fpga}. Pesquisas na área de segurança da informação também utilizam FPGAs na implementação de algoritmos de criptografia \cite{deshpande2009fpga}, \cite{almeidaconstruccao}.
+
+% Até a década de 1990, o algoritmo padrão de criptografia usado pelo governo norte americano era o DES (Data Encryption Standard). Em 1993, o pesquisador canadense Michael J. Wiener descreveu em seu trabalho como construir um chipe dedicado capaz de quebrar a criptografia do DES \cite{wiener1994efficient}. Com isso surgiu a necessidade de adotar um novo padrão de criptografia. O NIST (National Institute of Standards and Technology) anunciou um concurso que determinaria o sucessor do DES, e que o algoritmo escolhido como vencedor passaria a se chamar AES (Advanced Encryption Standard). O algoritmo encolhido como sucessor do DES foi o Rijndael, proposto por Vicent Rijmen e Joan Daemen \cite{Daemen98aesproposal, pub197}.
+
+Até a década de 1990, o algoritmo padrão de criptografia usado pelo governo norte americano era o DES (Data Encryption Standard). Com o aumento no poder computacional, a criptografia do DES tornou-se obsoleta, sendo necessário estabelecer um novo padrão de criptografia. Em um concurso promovido pelo NIST (National Institute of Standards and Technology), foi escolhido como sucessor do DES o algoritmo Rijndael, proposto por Vicent Rijmen e Joan Daemen \cite{pub197}. Após algumas modificações, o algoritmo Rijndael passou a se chamar AES (Advanced Encryption Standard) e foi adotado mundialmente como o novo padrão de criptografia. A descrição detalhada dos passos deste algoritmo pode ser encontrada no capítulo \ref{cap:fundamentacao}.
+
+Nesta pesquisa, o algoritmo AES será implementado em hardware dedicado, utilizando a FPGA Xilinx Spartan 3A Starter Kit. O algoritmo será executado em um computador pessoal e em uma FPGA, com o intuito de mensurar o tempo gasto em cada execução. Por fim, serão comparados os tempos de execução dos algoritmos executados em ambos ambientes computacionais. O capítulo \ref{cap:metodologia} apresenta as etapas que compõem a metodologia proposta.
+
+% A relevância deste trabalho pode ser confirmada, uma vez que, estudos de técnicas de criptografia e o desenvolvimento de dispositivos embarcados estão entre os desafios da pesquisa em computação para a próxima década \cite{grandesDesafios2013}.
+
+Estudos de técnicas de criptografia e o desenvolvimento de dispositivos embarcados estão entre os desafios da pesquisa em computação para a próxima década \cite{grandesDesafios2013}, o que confirma a relevância deste trabalho.
+
+% Este trabalho propõe uma implementação do algoritmo de criptografia AES em hardware dedicado, utilizando a FPGA Xilinx Spartan 3A Starter Kit, a fim de analisar o seu desempenho em relação ao mesmo algoritmo implementado em software.
+
+% ROTEIRO DO DOCUMENTO
+
+%A área de criptografia é tema corrente em congressos e seminários, em que os objetivos são analisar e estabelecer novos padrões de criptografia coerentes aos avanços da tecnologia \cite{grandesDesafios2013}.
+
+% A principal diferença entre FPGA e ASIC em termos de desempenho é o tempo gasto para a reconfiguração dos circuitos da FPGA. A implementação física dos circuitos (ASIC), garante que o mesmo possua um desempenho maior se comparado com arquiteturas como a FPGA, por não ter a necessidade de reconfiguração dos circuitos. O tempo gasto para reconfigurar os circuitos lógicos da FPGA garante que uma implementação em FPGA sempre terá um desempenho menor se comparado a mesma implementação em ASIC, assumindo que, os circuitos integrados sejam fabricados usando a mesma tecnologia de semicondutores \cite{gaj2009fpga}.
+
+% em que o algoritmo associado será analisado e modificado na tentativa de reduzir seu custo computacional e possibilitar, assim, sua execução em sistemas computacionais menos robustos.
+
+% A implementação de algoritmos de criptografia em hardware dedicado é tema corrente em congressos e seminários. 
+
+% \footnote{O pesquisador canadense Michael J. Wiener descreveu em seu trabalho como construir um chipe dedicado capaz de quebrar a criptografia do DES}
+
 
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -110,5 +181,346 @@
 	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	\subsection{Criptografia}
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat.
+
+	\subsubsection{Criptografia}
+
+	 Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	\subsubsubsection{Criptografia}
+
+	 Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	\chapter{Desenvolvimento}
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	\chapter[Desenvolvimento]{Desenvolvimento}
+
+Nos últimos anos, a criptografia tornou-se essencial à segurança de dados eletrônicos, em função do aumento na quantidade de informações enviadas e recebidas no formato digital causado pela popularização dos meios de comunicação digitais \cite{deshpande2009fpga, almeidaconstruccao}.
+
+Atualmente várias operações são feitas através da Internet, desde a transmissão de mensagens e compras em comércio eletrônico, até transações financeiras por instituições bancárias \cite{grandesDesafios2013}. Com a utilização da internet como meio de comunicação, surge a necessidade de proteger os dados transmitidos contra o acesso indevido.
+
+Para oferecer confiabilidade nos serviços prestados através da Internet, são usadas técnicas de criptografia. Segundo \citeonline{stallings}, a criptografia é o processo de converter uma informação legível em uma informação codificada com base em cálculos matemáticos.
+
+Com a evolução tecnológica, são produzidos computadores com hardware mais potentes, tornando os métodos de criptografia tradicionais obsoletos. Neste cenário, novas técnicas de criptografia são desenvolvidas a fim de tornar mais segura a transmissão de informações por meios digitais \cite{modeloAESsimplificado}. 
+
+Tais técnicas podem ser implementadas tanto em software como em hardware \cite{almeidaconstruccao}. A implementação por software é caracterizada por usar linguagens de programação como C, C++ e Linguagem de Montagem (Assembly), e por ser executada em microprocessadores de propósito geral. Já a implementação por hardware é caracterizada por usar linguagens de descrição de hardware, como VHDL e Verilog HDL, e é projetada para executar sobre um hardware dedicado, como FPGA (Field-Programmable Gates Array) e  ASIC (Application Specific Integrated Circuits) \cite{gaj2009fpga}.
+
+ASIC são circuitos integrados projetados para uma aplicação específica, e possuem um custo elevado com relação a FPGA. Já FPGA são dispositivos semicondutores programáveis baseados em uma matriz CLB (Configurable Logic Blocks) \footnote{Uma matriz CLB (Bloco Lógicos Configuráveis) é composta por circuitos lógicos interligados como multiplexadores e flip-flop.}.
+As FPGAs são programadas conforme a necessidade de cada aplicação. A cada reconfiguração, são feitas novas ligações lógicas, o que torna a FPGA um dispositivo flexível, podendo ser aplicado em várias situações \cite{xilinxfpga}.
+
+A principal vantagem da FPGA em relação ao ASIC é a capacidade de reconfiguração dos circuitos, o que permite diversas implementações sobre o mesmo hardware, mudando apenas as ligações dos circuitos lógicos. Isto torna esta arquitetura ideal para prototipação e validação de sistemas, além de possuir baixo custo, se comparado ao valor unitário de um ASIC \cite{gaj2009fpga}.
+
+Pesquisas em áreas como medicina e biologia possuem em comum a necessidade de processar enormes quantidades de dados. Nesses casos, são usados hardwares dedicados, como FPGA e ASIC, como alternativa ao processamento em hardware de propósito geral \cite{MolecularBiology}, \cite{BiologicalSequenceAligment}. Algoritmos de criptografia são caracterizados por efetuar operações matemáticas complexas, o que consome grande quantidade de recursos computacionais \cite{deshpande2009fpga}. Pesquisas na área de segurança da informação também utilizam FPGAs na implementação de algoritmos de criptografia \cite{deshpande2009fpga}, \cite{almeidaconstruccao}.
+
+% Até a década de 1990, o algoritmo padrão de criptografia usado pelo governo norte americano era o DES (Data Encryption Standard). Em 1993, o pesquisador canadense Michael J. Wiener descreveu em seu trabalho como construir um chipe dedicado capaz de quebrar a criptografia do DES \cite{wiener1994efficient}. Com isso surgiu a necessidade de adotar um novo padrão de criptografia. O NIST (National Institute of Standards and Technology) anunciou um concurso que determinaria o sucessor do DES, e que o algoritmo escolhido como vencedor passaria a se chamar AES (Advanced Encryption Standard). O algoritmo encolhido como sucessor do DES foi o Rijndael, proposto por Vicent Rijmen e Joan Daemen \cite{Daemen98aesproposal, pub197}.
+
+Até a década de 1990, o algoritmo padrão de criptografia usado pelo governo norte americano era o DES (Data Encryption Standard). Com o aumento no poder computacional, a criptografia do DES tornou-se obsoleta, sendo necessário estabelecer um novo padrão de criptografia. Em um concurso promovido pelo NIST (National Institute of Standards and Technology), foi escolhido como sucessor do DES o algoritmo Rijndael, proposto por Vicent Rijmen e Joan Daemen \cite{pub197}. Após algumas modificações, o algoritmo Rijndael passou a se chamar AES (Advanced Encryption Standard) e foi adotado mundialmente como o novo padrão de criptografia. A descrição detalhada dos passos deste algoritmo pode ser encontrada no capítulo \ref{cap:fundamentacao}.
+
+Nesta pesquisa, o algoritmo AES será implementado em hardware dedicado, utilizando a FPGA Xilinx Spartan 3A Starter Kit. O algoritmo será executado em um computador pessoal e em uma FPGA, com o intuito de mensurar o tempo gasto em cada execução. Por fim, serão comparados os tempos de execução dos algoritmos executados em ambos ambientes computacionais. O capítulo \ref{cap:metodologia} apresenta as etapas que compõem a metodologia proposta.
+
+% A relevância deste trabalho pode ser confirmada, uma vez que, estudos de técnicas de criptografia e o desenvolvimento de dispositivos embarcados estão entre os desafios da pesquisa em computação para a próxima década \cite{grandesDesafios2013}.
+
+Estudos de técnicas de criptografia e o desenvolvimento de dispositivos embarcados estão entre os desafios da pesquisa em computação para a próxima década \cite{grandesDesafios2013}, o que confirma a relevância deste trabalho.
+
+% Este trabalho propõe uma implementação do algoritmo de criptografia AES em hardware dedicado, utilizando a FPGA Xilinx Spartan 3A Starter Kit, a fim de analisar o seu desempenho em relação ao mesmo algoritmo implementado em software.
+
+% ROTEIRO DO DOCUMENTO
+
+%A área de criptografia é tema corrente em congressos e seminários, em que os objetivos são analisar e estabelecer novos padrões de criptografia coerentes aos avanços da tecnologia \cite{grandesDesafios2013}.
+
+% A principal diferença entre FPGA e ASIC em termos de desempenho é o tempo gasto para a reconfiguração dos circuitos da FPGA. A implementação física dos circuitos (ASIC), garante que o mesmo possua um desempenho maior se comparado com arquiteturas como a FPGA, por não ter a necessidade de reconfiguração dos circuitos. O tempo gasto para reconfigurar os circuitos lógicos da FPGA garante que uma implementação em FPGA sempre terá um desempenho menor se comparado a mesma implementação em ASIC, assumindo que, os circuitos integrados sejam fabricados usando a mesma tecnologia de semicondutores \cite{gaj2009fpga}.
+
+% em que o algoritmo associado será analisado e modificado na tentativa de reduzir seu custo computacional e possibilitar, assim, sua execução em sistemas computacionais menos robustos.
+
+% A implementação de algoritmos de criptografia em hardware dedicado é tema corrente em congressos e seminários. 
+
+% \footnote{O pesquisador canadense Michael J. Wiener descreveu em seu trabalho como construir um chipe dedicado capaz de quebrar a criptografia do DES}
+
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	\section{Criptografia}
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	\subsection{Criptografia}
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat.
+
+	\subsubsection{Criptografia}
+
+	 Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	\subsubsubsection{Criptografia}
+
+	 Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	\chapter{Desenvolvimento}
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+	\postextual
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+% \bibliography{abntex2-modelo-references}
+\bibliography{ref}
 
 \end{document}
