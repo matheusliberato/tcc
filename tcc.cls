@@ -17,7 +17,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ifspcjo-brasil-abntex2}[2013/04/01 v1.0 Modelo do Instituto Federal de São Paulo campus Campos do Jordão baseado em abnTeX2]
+\ProvidesClass{ifspcjo-brasil-abntex2}[2013/04/01 v1.0 Modelo TCC baseado em abnTeX2]
 
 %
 % Repassa todos os parametros a classe abntex2, 
@@ -60,6 +60,20 @@
 
 \renewcommand{\ABNTEXsubsubsubsectionfont}{\ABNTEXsubsectionfont}
 \renewcommand{\ABNTEXsubsubsubsectionfontsize}{\normalsize}
+
+
+%% Deixa as fontes do sumário do mesmo tamanho para seções secundarias, ternárias, quaternárias e quinárias.
+\renewcommand{\cftsectionfont}{\bfseries}
+\renewcommand{\cftsectionpagefont}{\cftsectionfont}
+%
+\renewcommand{\cftsubsectionfont}{\normalsize}
+\renewcommand{\cftsubsectionpagefont}{\cftsectionfont}
+%
+\renewcommand{\cftsubsubsectionfont}{\normalsize}
+\renewcommand{\cftsubsubsectionpagefont}{\cftsectionfont}
+%
+\renewcommand{\cftparagraphfont}{\normalsize}
+\renewcommand{\cftparagraphpagefont}{\cftsectionfont}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
 %   ALTERA O TAMANHO DAS FONTES DOS CAPITULOS, SECOES ETC       %
