@@ -53,14 +53,19 @@
 \renewcommand{\ABNTEXsectionfontsize}{\normalsize\bfseries}
 
 \renewcommand{\ABNTEXsubsectionfont}{\ABNTEXsectionfont}
-\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize\bfseries}
 
 \renewcommand{\ABNTEXsubsubsectionfont}{\ABNTEXsubsectionfont}
-\renewcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsubsectionfontsize}{\normalsize\bfseries}
 
 \renewcommand{\ABNTEXsubsubsubsectionfont}{\ABNTEXsubsectionfont}
-\renewcommand{\ABNTEXsubsubsubsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsubsubsectionfontsize}{\normalsize\bfseries}
 
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+%   ALTERA O TAMANHO DAS FONTES DOS CAPITULOS, SECOES ETC       %
+%   NO SUMARIO
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
 
 %% Deixa as fontes do sumário do mesmo tamanho para seções secundarias, ternárias, quaternárias e quinárias.
 \renewcommand{\cftsectionfont}{\bfseries}
@@ -74,11 +79,6 @@
 %
 \renewcommand{\cftparagraphfont}{\normalsize}
 \renewcommand{\cftparagraphpagefont}{\cftsectionfont}
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
-%   ALTERA O TAMANHO DAS FONTES DOS CAPITULOS, SECOES ETC       %
-%   NO SUMARIO
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
 
 % Tira o negrito das seções no sumário.
 \renewcommand{\cftsectionfont}{}
