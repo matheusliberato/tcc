@@ -17,15 +17,31 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ifspcjo-brasil-abntex2}[2013/04/01 v1.0 Modelo TCC baseado em abnTeX2]
+\ProvidesClass{matheus}[2013/04/01 v1.0 Modelo TCC baseado em abnTeX2]
 
-%
-% Repassa todos os parametros a classe abntex2, 
+% Repassa os parâmetros ao abntex2
 \DeclareOption*{%
-  \PassOptionsToClass{\CurrentOption}{abntex2}%
+\PassOptionsToClass{\CurrentOption}{abntex2}
 }
+
+\PassOptionsToClass{
+chapter=TITLE,
+12pt, % Tamanho da fonte
+twoside, % Para impressão em verso e anverso. Oposto a oneside
+a4paper, % Tamanho do papel
+english, % Idioma adicional para hifenização
+french, % Idioma adicional para hifenização
+spanish, % Idioma adicional para hifenização
+brazilian, %
+brazil % o último idioma é o principal do documento
+}{abntex2}
+
 \ProcessOptions\relax
 \LoadClass{abntex2}
+
+% Pacotes
+%% Correção ortográfica
+%\RequirePackage[brazil,brazilian]{babel}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Pacotes necessários para compilar.    %
@@ -86,6 +102,14 @@
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
 
+%%%
+%% Altera o nome de 'Referências Bibliográficas' para apenas 'Referências'
+%% 
+\AtBeginDocument{
+  \addto\captionsbrazil{
+    \renewcommand\bibname{REFER\^ENCIAS}
+  }
+}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
 %   ALTERA A CRIACAO DA CAPA
