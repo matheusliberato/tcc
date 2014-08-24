@@ -97,15 +97,15 @@
     
     \vspace*{1cm}
     
-    {\ABNTEXchapterfont\large\MakeTextUppercase\imprimirautor}
+    {\ABNTEXchapterfont\normalsize\MakeTextUppercase\imprimirautor}
 
     \vfill
-    {\ABNTEXchapterfont\bfseries\Large\MakeTextUppercase\imprimirtitulo}
+    {\ABNTEXchapterfont\bfseries\large\MakeTextUppercase\imprimirtitulo}
     \vfill
     
-    \large\MakeTextUppercase\imprimirlocal
+    \ABNTEXchapterfont\normalsize\MakeTextUppercase\imprimirlocal
 
-    \large\imprimirano
+    \ABNTEXchapterfont\normalsize\imprimirano
     
     \vspace*{1cm}
   \end{capa}
@@ -119,12 +119,12 @@
 
 \renewcommand{\folhaderostocontent}{
 \begin{center}    
-{\ABNTEXchapterfont\large\MakeTextUppercase\imprimirautor}
+{\ABNTEXchapterfont\normalsize\MakeTextUppercase\imprimirautor}
 
 \vspace*{\fill}\vspace*{\fill}
 
 \begin{center}
-\ABNTEXchapterfont\Large\bfseries\MakeTextUppercase\imprimirtitulo
+\ABNTEXchapterfont\large\bfseries\MakeTextUppercase\imprimirtitulo
 \end{center}
 
 \vspace*{\fill}
@@ -135,14 +135,14 @@
   \SingleSpacing
   \normalsize\imprimirpreambulo
   \vspace{0.5cm}
-  {\par{\large\bfseries\imprimirorientadorRotulo}~\large\imprimirorientador\par}
+  {\par{\normalsize\bfseries\imprimirorientadorRotulo}~\normalsize\imprimirorientador\par}
   \end{minipage}%
   \vspace*{\fill}
 }%
 
 % Caso exista coorientador.
 \abntex@ifnotempty{\imprimircoorientador}{%
-  {\large\imprimircoorientadorRotulo~\imprimircoorientador}%
+  {\normalsize\imprimircoorientadorRotulo~\imprimircoorientador}%
 }%
 
 \vspace*{\fill}
@@ -150,11 +150,11 @@
 %Descomentar essa linha para exibir a instituicao
 %{\abntex@ifnotempty{\imprimirinstituicao}{\imprimirinstituicao\vspace*{\fill}}}
 
-{\large\MakeTextUppercase\imprimirlocal}
+{\ABNTEXchapterfont\normalsize\MakeTextUppercase\imprimirlocal}
 
 \par
 
-{\large\imprimirano}
+{\ABNTEXchapterfont\normalsize\imprimirano}
 \vspace*{1cm}
 \end{center}
 }
@@ -167,11 +167,11 @@
 \begin{folhadeaprovacao}
 
   \begin{center}
-    {\ABNTEXchapterfont\large\MakeTextUppercase\imprimirautor}
+    {\ABNTEXchapterfont\normalsize\MakeTextUppercase\imprimirautor}
 
     \vspace*{\fill}
     \begin{center}
-      {\ABNTEXchapterfont\bfseries\Large\MakeTextUppercase\imprimirtitulo}
+      {\ABNTEXchapterfont\bfseries\large\MakeTextUppercase\imprimirtitulo}
     \end{center}
     \vspace*{0.5cm}
     \end{center}
@@ -180,7 +180,7 @@
     \vspace*{\fill}
 
     \begin{center}
-      {{\large\bfseries\MakeTextUppercase{Banca Examinadora}} \par \imprimirdata}
+      {{\normalsize\bfseries\MakeTextUppercase{Banca Examinadora}} \par \imprimirdata}
       \vspace*{0.5cm}
     \end{center}
 
@@ -193,11 +193,11 @@
    %\assinatura{\textbf{Professor} \\ Convidado 4}
       
    \begin{center}
-    {\large\bfseries\MakeTextUppercase{Local} \par}
+    {\normalsize\bfseries\MakeTextUppercase{Local} \par}
     \vspace*{0.3cm}
-    {\large\imprimirinstituicao~-~{\itshape campus}~\imprimirlocal}
+    {\normalsize\imprimirinstituicao~-~{\itshape campus}~\imprimirlocal}
     \par
-    {\large\imprimirlocal, SP}
+    {\normalsize\imprimirlocal, SP}
     \par
     %{\large\imprimirdata}
     \vspace*{1cm}
