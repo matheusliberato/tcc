@@ -111,6 +111,38 @@ brazil % o último idioma é o principal do documento
   }
 }
 
+% -----
+% Declaracoes de cabecalhos 
+% -----
+% Cabecalho padrao
+\makepagestyle{abntheadings}
+\makeevenhead{abntheadings}{\ABNTEXfontereduzida\thepage}{}{\ABNTEXfontereduzida}
+\makeoddhead{abntheadings}{\ABNTEXfontereduzida\textit\rightmark}{}{\ABNTEXfontereduzida\thepage}
+%\makeheadrule{abntheadings}{\textwidth}{\normalrulethickness}
+
+% Cabecalho do inicio do capitulo
+\makepagestyle{abntchapfirst}
+\makeoddhead{abntchapfirst}{}{}{\ABNTEXfontereduzida\thepage}
+% ---
+
+%%%%%
+%% Altera cabeçalho da parte textual.
+%%%%%
+% ---
+% Configura layout para elementos textuais
+\renewcommand{\textual}{%
+  \ifthenelse{\equal{\ABNTEXisarticle}{true}}{%
+    \pagestyle{plain}%
+  }{%else  
+    \pagestyle{abntheadings}
+    \aliaspagestyle{chapter}{abntchapfirst}
+  }  
+  \nouppercaseheads%
+  \bookmarksetup{startatroot}% 
+}
+\renewcommand{\mainmatter}{\textual}
+% ---
+
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
 %   ALTERA A CRIACAO DA CAPA
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
