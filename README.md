@@ -20,6 +20,18 @@ git clone git@github.com:MatheusLiberato/tcc.git
 ```
 Este comando irá criar o arquivo *tcc.cls* que corresponde a classe de formatação e o diretório *img*, que contém as imagens necessárias.
 
+Após isso é necessário editar o arquivo *monografia.tex* e substituir a linha referente ao `documntclass`.
+
+```
+\documentclass[parametros_opcionais]{abntex2}
+```
+por
+
+```
+\documentclass[parametros_opcionais]{tcc}
+```
+Depois é só compilar o arquivo *monografia.tex* e pronto! :) 
+
 ## Dúvidas?
 
 Para qualquer dúvida, segue email de contato:
