@@ -12,6 +12,9 @@
 *.brf
 *.idx
 
+## Sublime Project
+*.sublime-workspace
+*.sublime-project
 
 ## Intermediate documents:
 *.dvi
