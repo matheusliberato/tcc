@@ -13,7 +13,12 @@ Segue o link para acesso as normas do TCC.
 
 ## Instalação
 
-Serão adicionadas instruções de como proceder com o uso correto dessa classe.
+Para a instalação utilizando o github é necessário navegar até o diretório em que a estão os arquivos da monografia e executar o seguinte comando:
+
+```
+git clone git@github.com:MatheusLiberato/tcc.git
+```
+Este comando irá criar o arquivo *tcc.cls* que corresponde a classe de formatação e o diretório *img*, que contém as imagens necessárias.
 
 ## Dúvidas?
 
