@@ -134,7 +134,8 @@ brazil % o último idioma é o principal do documento
   \ifthenelse{\equal{\ABNTEXisarticle}{true}}{%
     \pagestyle{plain}%
   }{%else  
-    \pagestyle{abntheadings}
+    %\pagestyle{abntheadings}
+    \pagestyle{simple}
     \aliaspagestyle{chapter}{abntchapfirst}
   }  
   \nouppercaseheads%
