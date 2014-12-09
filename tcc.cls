@@ -17,7 +17,7 @@
 %%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{matheus}[2013/04/01 v1.0 Modelo TCC baseado em abnTeX2]
+\ProvidesClass{tcc}[2013/04/01 v1.0 Modelo TCC baseado em abnTeX2]
 
 % Repassa os parâmetros ao abntex2
 \DeclareOption*{%
@@ -144,6 +144,35 @@ brazil % o último idioma é o principal do documento
 \renewcommand{\mainmatter}{\textual}
 % ---
 
+% ----
+% ESPAÇO ENTRE O CAPITULO E O TEXTO
+% ----
+\setlength\afterchapskip{1.5cm}
+
+\setlength\beforesecskip{1.5cm} %espaçamento entre seção e texto
+\setlength\aftersecskip{1.5cm} %espaçamento entre seção e texto
+
+\setlength\beforesubsecskip{1.5cm} %espaçamento entre seção e texto
+\setlength\aftersubsecskip{1.5cm} %espaçamento entre subseção e texto
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+% Novo list of (listings) para QUADROS
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+
+% Novo list of (listings) para QUADROS
+
+\newcommand{\quadroname}{Gráfico}
+\newcommand{\listofquadrosname}{Lista de Gráficos}
+
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofgraficos}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
+% configurações para atender às regras da ABNT
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space} 
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
 %   ALTERA A CRIACAO DA CAPA
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
@@ -241,10 +270,11 @@ brazil % o último idioma é o principal do documento
       \vspace*{0.5cm}
     \end{center}
 
-   \assinatura{\bfseries\imprimirorientadorRotulo~\imprimirorientador} 
-   \assinatura{\bfseries Professor}
-   \assinatura{\bfseries Professor}
-
+   %\assinatura{\bfseries\imprimirorientadorRotulo~\imprimirorientador} 
+   \assinatura{\bfseries Prof. Dr. \imprimirorientador} 
+   \assinatura{\bfseries Prof. Dr. João Evangelista Netto}
+   \assinatura{\bfseries Prof. Msc. Domingos Lucas Latorre de Oliveira}
+   
    \vspace*{\fill}
    %\assinatura{\textbf{Professor} \\ Convidado 3}
    %\assinatura{\textbf{Professor} \\ Convidado 4}
