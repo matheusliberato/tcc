@@ -108,6 +108,7 @@ brazil % o último idioma é o principal do documento
 \AtBeginDocument{
   \addto\captionsbrazil{
     \renewcommand\bibname{REFER\^ENCIAS}
+    \renewcommand\listfigurename{Lista de Figuras}
   }
 }
 
@@ -282,7 +283,7 @@ brazil % o último idioma é o principal do documento
    \begin{center}
     {\normalsize\bfseries\MakeTextUppercase{Local} \par}
     \vspace*{0.3cm}
-    {\normalsize\imprimirinstituicao~-~{\itshape campus}~\imprimirlocal}
+    {\normalsize\imprimirinstituicao}
     \par
     {\normalsize\imprimirlocal, SP}
     \par
