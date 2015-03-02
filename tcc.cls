@@ -274,7 +274,7 @@ brazil % o último idioma é o principal do documento
    %\assinatura{\bfseries\imprimirorientadorRotulo~\imprimirorientador} 
    \assinatura{\bfseries Prof. Dr. \imprimirorientador} 
    \assinatura{\bfseries Prof. Dr. João Evangelista Netto}
-   \assinatura{\bfseries Prof. Msc. Domingos Lucas Latorre de Oliveira}
+   \assinatura{\bfseries Prof. Me. Domingos Lucas Latorre de Oliveira}
    
    \vspace*{\fill}
    %\assinatura{\textbf{Professor} \\ Convidado 3}
