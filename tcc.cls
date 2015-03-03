@@ -54,12 +54,14 @@ brazil % o último idioma é o principal do documento
 % Comando para exibir o ano de uma data %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\imprimirano}{\the\year}
+%\newcommand{\imprimirano}{2014}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
 %   ALTERA O TAMANHO DAS FONTES DOS CAPITULOS, SECOES ETC.      %
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
 
-\renewcommand{\ABNTEXchapterfont}{\sffamily}
+%\renewcommand{\ABNTEXchapterfont}{\sffamily}
+\renewcommand{\ABNTEXchapterfont}{}
 \renewcommand{\ABNTEXchapterfontsize}{\normalsize\bfseries}
 
 \renewcommand{\ABNTEXpartfont}{\ABNTEXchapterfont}
@@ -180,19 +182,21 @@ brazil % o último idioma é o principal do documento
 \renewcommand{\imprimircapa}{%
   \begin{capa}%
     \center
-    \includegraphics[width=10cm, keepaspectratio]{img/ifsp-cjo.pdf}
+    {\bfseries\large\MakeTextUppercase\imprimirinstituicao}
     
     \vspace*{1cm}
     
-    {\ABNTEXchapterfont\normalsize\MakeTextUppercase\imprimirautor}
+    %{\ABNTEXchapterfont\normalsize\MakeTextUppercase\imprimirautor}
+    {\large\MakeTextUppercase\imprimirautor}
 
     \vfill
-    {\ABNTEXchapterfont\bfseries\large\MakeTextUppercase\imprimirtitulo}
+    %{\ABNTEXchapterfont\bfseries\large\MakeTextUppercase\imprimirtitulo}
+    {\bfseries\large\MakeTextUppercase\imprimirtitulo}
     \vfill
     
-    \ABNTEXchapterfont\normalsize\MakeTextUppercase\imprimirlocal
+    \large\MakeTextUppercase\imprimirlocal
 
-    \ABNTEXchapterfont\normalsize\imprimirano
+    \large\imprimirano
     
     \vspace*{1cm}
   \end{capa}
@@ -204,14 +208,23 @@ brazil % o último idioma é o principal do documento
 
 \makeatletter
 
+% Comandos de dados - orientador
+\providecommand{\imprimirorientadorRotulo}{}
+\providecommand{\imprimirorientador}{}
+\providecommand{\imprimirtitulacaoorientador}{}
+\renewcommand{\orientador}[3][\orientadorname]%
+  {\renewcommand{\imprimirorientadorRotulo}{#1}%
+   \renewcommand{\imprimirtitulacaoorientador}{#2}%
+   \renewcommand{\imprimirorientador}{#3}}
+
 \renewcommand{\folhaderostocontent}{
 \begin{center}    
-{\ABNTEXchapterfont\normalsize\MakeTextUppercase\imprimirautor}
+{\normalsize\MakeTextUppercase\imprimirautor}
 
 \vspace*{\fill}\vspace*{\fill}
 
 \begin{center}
-\ABNTEXchapterfont\large\bfseries\MakeTextUppercase\imprimirtitulo
+\large\bfseries\MakeTextUppercase\imprimirtitulo
 \end{center}
 
 \vspace*{\fill}
@@ -222,7 +235,7 @@ brazil % o último idioma é o principal do documento
   \SingleSpacing
   \normalsize\imprimirpreambulo
   \vspace{0.5cm}
-  {\par{\normalsize\bfseries\imprimirorientadorRotulo}~\normalsize\imprimirorientador\par}
+  {\par{\normalsize\bfseries\imprimirorientadorRotulo}~\imprimirtitulacaoorientador~\normalsize\imprimirorientador\par}
   \end{minipage}%
   \vspace*{\fill}
 }%
@@ -237,11 +250,11 @@ brazil % o último idioma é o principal do documento
 %Descomentar essa linha para exibir a instituicao
 %{\abntex@ifnotempty{\imprimirinstituicao}{\imprimirinstituicao\vspace*{\fill}}}
 
-{\ABNTEXchapterfont\normalsize\MakeTextUppercase\imprimirlocal}
+{\normalsize\MakeTextUppercase\imprimirlocal}
 
 \par
 
-{\ABNTEXchapterfont\normalsize\imprimirano}
+{\normalsize\imprimirano}
 \vspace*{1cm}
 \end{center}
 }
@@ -250,15 +263,47 @@ brazil % o último idioma é o principal do documento
 %   ALTERA A CRIACAO DA FOLHA DE APROVACAO
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
 
+% Comandos de dados - primeiro membro da banca.
+\providecommand{\imprimirtitulacaoprimeiromembrodabanca}{}
+\providecommand{\imprimirprimeiromembrodabanca}{}
+\providecommand{\imprimirinstituicaoprimeiromembrodabanca}{}
+\newcommand{\primeiromembrodabanca}[3]%
+  {\renewcommand{\imprimirtitulacaoprimeiromembrodabanca}{#1}%
+   \renewcommand{\imprimirprimeiromembrodabanca}{#2}%
+   \renewcommand{\imprimirinstituicaoprimeiromembrodabanca}{#3}}
+
+
+% Comandos de dados - segundo membro da banca.
+\providecommand{\imprimirtitulacaosegundomembrodabanca}{}
+\providecommand{\imprimirsegundomembrodabanca}{}
+\providecommand{\imprimirinstituicaosegundomembrodabanca}{}
+\newcommand{\segundomembrodabanca}[3]%
+  {\renewcommand{\imprimirtitulacaosegundomembrodabanca}{#1}%
+   \renewcommand{\imprimirsegundomembrodabanca}{#2}%
+   \renewcommand{\imprimirinstituicaosegundomembrodabanca}{#3}}
+
+
+% Comandos de dados - terceiro membro da banca.
+\providecommand{\imprimirtitulacaoterceiromembrodabanca}{}
+\providecommand{\imprimirterceiromembrodabanca}{}
+\providecommand{\imprimirinstituicaoterceiromembrodabanca}{}
+\newcommand{\terceiromembrodabanca}[3]%
+  {\renewcommand{\imprimirtitulacaoterceiromembrodabanca}{#1}%
+   \renewcommand{\imprimirterceiromembrodabanca}{#2}%
+   \renewcommand{\imprimirinstituicaoterceiromembrodabanca}{#3}}
+
+
+
 \newcommand{\folhadeaprovacaoteste}{
 \begin{folhadeaprovacao}
 
   \begin{center}
-    {\ABNTEXchapterfont\normalsize\MakeTextUppercase\imprimirautor}
+    {\normalsize\MakeTextUppercase\imprimirautor}
 
     \vspace*{\fill}
+
     \begin{center}
-      {\ABNTEXchapterfont\bfseries\large\MakeTextUppercase\imprimirtitulo}
+      {\bfseries\large\MakeTextUppercase\imprimirtitulo}
     \end{center}
     \vspace*{0.5cm}
     \end{center}
@@ -271,14 +316,13 @@ brazil % o último idioma é o principal do documento
       \vspace*{0.5cm}
     \end{center}
 
-   %\assinatura{\bfseries\imprimirorientadorRotulo~\imprimirorientador} 
-   \assinatura{\bfseries Prof. Dr. \imprimirorientador} 
-   \assinatura{\bfseries Prof. Dr. João Evangelista Netto}
-   \assinatura{\bfseries Prof. Me. Domingos Lucas Latorre de Oliveira}
+   \assinatura{{\bfseries\imprimirtitulacaoprimeiromembrodabanca~\imprimirprimeiromembrodabanca} \\ \imprimirinstituicaoprimeiromembrodabanca}
+
+   \assinatura{{\bfseries\imprimirtitulacaosegundomembrodabanca~\imprimirsegundomembrodabanca} \\ \imprimirinstituicaosegundomembrodabanca}
+
+   \assinatura{{\bfseries\imprimirtitulacaoterceiromembrodabanca~\imprimirterceiromembrodabanca} \\ \imprimirinstituicaoterceiromembrodabanca}
    
    \vspace*{\fill}
-   %\assinatura{\textbf{Professor} \\ Convidado 3}
-   %\assinatura{\textbf{Professor} \\ Convidado 4}
       
    \begin{center}
     {\normalsize\bfseries\MakeTextUppercase{Local} \par}
@@ -293,5 +337,4 @@ brazil % o último idioma é o principal do documento
   
 \end{folhadeaprovacao}
 }
-
 \makeatother
