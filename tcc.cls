@@ -159,22 +159,40 @@ brazil % o último idioma é o principal do documento
 \setlength\aftersubsecskip{1.5cm} %espaçamento entre subseção e texto
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
-% Novo list of (listings) para QUADROS
+% Novo list of (listings) para graficos
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
 
-% Novo list of (listings) para QUADROS
+% Novo list of (listings) para graficos
 
-\newcommand{\quadroname}{Gráfico}
-\newcommand{\listofquadrosname}{Lista de Gráficos}
+\newcommand{\graficoname}{Gráfico}
+\newcommand{\listofgraficosname}{Lista de Gráficos}
 
-\newfloat[chapter]{quadro}{loq}{\quadroname}
-\newlistof{listofgraficos}{loq}{\listofquadrosname}
-\newlistentry{quadro}{loq}{0}
+\newfloat[chapter]{grafico}{loq}{\graficoname}
+\newlistof{listofgraficos}{loq}{\listofgraficosname}
+\newlistentry{grafico}{loq}{0}
 
 % configurações para atender às regras da ABNT
-\counterwithout{quadro}{chapter}
-\renewcommand{\cftquadroname}{\quadroname\space} 
-\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+\counterwithout{grafico}{chapter}
+\renewcommand{\cftgraficoname}{\graficoname\space} 
+\renewcommand*{\cftgraficoaftersnum}{\hfill--\hfill}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+% Novo list of (listings) para EQUACOES
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+
+% Novo list of (listings) para EQUACOES
+
+\newcommand{\equacoesname}{Equação}
+\newcommand{\listofequacoesname}{Lista de Equações}
+
+\newfloat[chapter]{equacoes}{loe}{\equacoesname}
+\newlistof{listofequacoes}{loe}{\listofequacoesname}
+\newlistentry{equacoes}{loe}{0}
+
+% configurações para atender às regras da ABNT
+\counterwithout{equacoes}{chapter}
+\renewcommand{\cftequacoesname}{\equacoesname\space} 
+\renewcommand*{\cftequacoesaftersnum}{\hfill--\hfill}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
 %   ALTERA A CRIACAO DA CAPA
